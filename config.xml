@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<plgen xmlns="pba" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pba config.xsd ">
+  <music>
+    <location>C:\Documents and Settings\anuvratsingh\My Documents\My Music</location>
+  </music>
+  <playlist>
+    <artist>Amon Amarth</artist>
+    <extension>m3u</extension>
+    <size>15</size>
+    <duration>Overall</duration>
+    <save_location>C:\Documents and Settings\anuvratsingh\Desktop\amonAmarth.m3u</save_location>
+    <location>C:\Documents and Settings\anuvratsingh\My Documents\My Music\English\Other Metal\Amon Amarth</location>
+    <enabled>true</enabled>
+  </playlist>
+  <playlist>
+    <artist>Greenday</artist>
+    <extension>m3u</extension>
+    <size>15</size>
+    <duration>Overall</duration>
+    <save_location>C:\Documents and Settings\anuvratsingh\Desktop\greenday.m3u</save_location>
+    <location>C:\Documents and Settings\anuvratsingh\My Documents\My Music\English\Alternative\Green Day</location>
+    <enabled>false</enabled>
+  </playlist>
+  <playlist>
+    <artist>Krypteria</artist>
+    <extension>m3u</extension>
+    <size>15</size>
+    <duration>Overall</duration>
+    <save_location>C:\Documents and Settings\anuvratsingh\Desktop\krypteria.m3u</save_location>
+    <location>C:\Documents and Settings\anuvratsingh\My Documents\My Music\English\Metal\Krypteria (Discography) [VIPER666]</location>
+    <enabled>false</enabled>
+  </playlist>
+</plgen>

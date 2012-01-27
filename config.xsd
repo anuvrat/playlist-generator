@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="pba" xmlns="pba">
+
+
+  <!-- Complex Elements -->
+
+  <xs:element name="plgen">
+    <xs:annotation>
+      <xs:documentation>The root element</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="music" maxOccurs="1" />
+        <xs:element ref="playlist" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="music" nillable="false">
+    <xs:annotation>
+      <xs:documentation>Defines a few globally used parameters</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="location" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="playlist">
+    <xs:annotation>
+      <xs:documentation>Defines the parameters on which the playlist is to be formed</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="playlistTypeGroup" maxOccurs="1" />
+        <xs:element ref="extension" maxOccurs="1" />
+        <xs:element ref="size" maxOccurs="1" />
+        <xs:element ref="duration" maxOccurs="1" />
+        <xs:element ref="save_location" maxOccurs="unbounded" />
+        <xs:element ref="location" maxOccurs="unbounded" />
+        <xs:element ref="enabled" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!-- Simple Elements -->
+
+  <xs:element name="artist" type="xs:normalizedString">
+    <xs:annotation>
+      <xs:documentation>The name of the artist for which the playlist is to be generated</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="list" type="listType">
+    <xs:annotation>
+      <xs:documentation>List points to the lists available with last.fm such as Top Tracks, User Playlists
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="duration" type="durationType" default="Overall">
+    <xs:annotation>
+      <xs:documentation>The duration for which the popularity of songs is to be looked up</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="enabled" type="xs:boolean" default="true">
+    <xs:annotation>
+      <xs:documentation>Specify whether this entry is to be evaluated or not</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="extension" type="extensionType">
+    <xs:annotation>
+      <xs:documentation>The extension of the playlist</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="location" type="xs:anyURI">
+    <xs:annotation>
+      <xs:documentation>The location of the song files on the hard drive</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="save_location" type="xs:anyURI">
+    <xs:annotation>
+      <xs:documentation>The location on the hard drive where the playlist is to be saved</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="size" type="sizeType">
+    <xs:annotation>
+      <xs:documentation>The number of songs to be enqueued in the playlist</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+
+  <!-- Types -->
+
+  <xs:simpleType name="durationType">
+    <xs:annotation>
+      <xs:documentation>The constraints on the Duration Types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Last 7 Days"></xs:enumeration>
+      <xs:enumeration value="Last 3 Months"></xs:enumeration>
+      <xs:enumeration value="Last 6 Months"></xs:enumeration>
+      <xs:enumeration value="Last 12 Months"></xs:enumeration>
+      <xs:enumeration value="Overall"></xs:enumeration>
+      <xs:whiteSpace value="collapse"></xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="extensionType">
+    <xs:annotation>
+      <xs:documentation>The constraints on the extensions currently supported</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="m3u"></xs:enumeration>
+      <xs:whiteSpace value="collapse"></xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="listType">
+    <xs:annotation>
+      <xs:documentation>The types of lists currently supported</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Top Tracks"></xs:enumeration>
+      <xs:whiteSpace value="collapse"></xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sizeType">
+    <xs:annotation>
+      <xs:documentation>The constraints on the size of the playlist</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"></xs:minInclusive>
+      <xs:whiteSpace value="collapse"></xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <!-- Groups -->
+
+  <xs:group name="playlistTypeGroup">
+    <xs:annotation>
+      <xs:documentation>The types of playlists that can be formed, such as Artist based, or Top Tracks based
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element ref="list" />
+      <xs:element ref="artist" />
+    </xs:choice>
+  </xs:group>
+
+</xs:schema>
